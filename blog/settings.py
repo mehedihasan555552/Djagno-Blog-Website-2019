@@ -23,12 +23,14 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '8zx(#+p@2*t#r_fk^)we6p-*7c9a!3=pwoz^k==_bamdb2bvac'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['mehedi-blog.herokuapp.com/']
+ALLOWED_HOSTS = ['mehedi-blog.herokuapp.com','127.0.0.1']
 
 
 # Application definition
+
+
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -39,20 +41,35 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'crispy_forms',
-    'base.apps.BaseConfig',
+    'base',
+
+
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+
+
+    'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.facebook',
+
 
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+
 
 ROOT_URLCONF = 'blog.urls'
 
@@ -121,18 +138,25 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+
+SITE_ID = 1
+LOGIN_REDIRECT_URL ="index"
+
+
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATIC_URL = '/static/'
-MEDIA_URL ='/images/'
 
-STATICFILES_DIRS = [
-  os.path.join(BASE_DIR,'static')
+MEDIA_URL = '/images/'
+
+STATICFILES_DIRS =[
+   os.path.join(BASE_DIR,'static')
 ]
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
-
+MEDIA_ROOT= os.path.join(BASE_DIR,'static/images')
 
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

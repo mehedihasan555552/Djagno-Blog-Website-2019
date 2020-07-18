@@ -1,31 +1,124 @@
-{% extends 'base.html' %}
-{% load crispy_forms_tags %}
-{% block content %}
+{% load static %}
 
-<div class="content-section">
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Mehedi SignUP</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" href="{% static '/css/signup.css' %}">
+	<link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
+	<script src="https://kit.fontawesome.com/a81368914c.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
 
-  <form  method="post">
-    {% csrf_token %}
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a style = 'margin-left:50px;' href="{% url 'index' %}"><h3>Home</h3></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
 
-    <fieldset class="form-group">
-      <legend class="border-bottom mb-4">Join</legend>
-
-      {{form|crispy }}
-
-    </fieldset>
-
-    <div class="form-group">
-      <input type="submit" name="submit" >
-
+          <a style='margin-left:1270px;'  href="{% url 'login' %}"><h3>Login</h3> <span class="sr-only">(current)</span></a>
+        </li>
+      </ul>
     </div>
+  </nav>
 
-  </form>
 
-  <div class="border-top pt-3">
-    <small class="text-muted">Already Have Account?<a class="ml-2" href="#">Sign In</a></small>
 
-  </div>
+	<img class="wave" src="{% static 'images/wave.png' %}">
+	<div class="container">
+		<div class="img">
+			<img src="{% static 'images/bg.svg' %}">
+		</div>
+		<div class="login-content">
+			<form action="" method="post">
+				{% csrf_token %}
 
-</div>
+				<h2 class="title">SignUP</h2>
+				<div class="input-div one">
+					 <div class="i">
+							<i class="fas fa-user"></i>
+					 </div>
+					 <div class="div">
+							<h5>Username</h5>
+							<input  type="text" class="input" >
+               {{ form.username }}
 
-{% endblock %}
+					 </div>
+				</div>
+
+
+				<div class="input-div one">
+					 <div class="i">
+							<i class="fas fa-user"></i>
+					 </div>
+					 <div class="div">
+							<h5>First Name</h5>
+							<input type="text" class="input" 	>
+              {{form.first_name}}
+					 </div>
+				</div>
+
+
+
+              <div class="input-div one">
+                 <div class="i">
+                    <i class="fas fa-user"></i>
+                 </div>
+                 <div class="div">
+                    <h5>Last Name</h5>
+                    <input type="text" class="input" >
+                      {{form.last_name}}
+                 </div>
+              </div>
+
+
+							<div class="input-div one">
+                 <div class="i">
+                    <i class="fas fa-user"></i>
+                 </div>
+                 <div class="div">
+                    <h5>Email</h5>
+                    <input type="text" class="input" >
+                         {{form.email}}
+                 </div>
+              </div>
+
+
+
+
+           		<div class="input-div pass">
+           		   <div class="i">
+           		    	<i class="fas fa-lock"></i>
+           		   </div>
+           		   <div class="div">
+           		    	<h5>Password</h5>
+           		    	<input type="password" class="input"  >
+                      {{form.password1}}
+            	   </div>
+            	</div>
+
+              <div class="input-div pas">
+           		   <div class="i">
+           		    	<i class="fas fa-lock"></i>
+           		   </div>
+           		   <div class="div">
+           		    	<h5>Re-Enter Password</h5>
+           		    	<input type="password" class="input" >
+                      {{form.password2}}
+            	   </div>
+            	</div>
+
+              {{form.errors}}
+
+            	<input type="submit" class="btn" value="SignUP">
+            </form>
+        </div>
+    </div>
+    <script type="text/javascript" src="{% static '/js/signup.js' %}"></script>
+</body>
+</html>
